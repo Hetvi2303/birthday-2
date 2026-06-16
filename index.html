@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Magical Surprise For You</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-classic">
+
+  <!-- Background Twinkling Stars Canvas -->
+  <canvas id="stars-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Theme Switcher Button -->
+  <button class="theme-toggle-btn" id="theme-toggle" title="Switch Theme">
+    <span class="icon">✨</span> <span class="label">Classic</span>
+  </button>
+
+  <div class="surprise-container" id="surprise-container">
+    
+    <!-- STEP 1: Countdown Screen -->
+    <div class="step-screen active" id="step-1">
+      <div class="screen-content center-content">
+        <div class="magical-intro-text">SOMEONE CRAFTED SOMETHING MAGICAL FOR</div>
+        <h2 class="recipient-name">Husband</h2>
+        <div class="divider"></div>
+        <div class="countdown-label">THE MAGIC BEGINS IN</div>
+        <div class="countdown-timer">
+          <div class="time-unit">
+            <span class="time-val" id="days-val">06</span>
+            <span class="time-lbl">DAYS</span>
+          </div>
+          <span class="time-colon">:</span>
+          <div class="time-unit">
+            <span class="time-val" id="hours-val">10</span>
+            <span class="time-lbl">HRS</span>
+          </div>
+          <span class="time-colon">:</span>
+          <div class="time-unit">
+            <span class="time-val" id="mins-val">46</span>
+            <span class="time-lbl">MIN</span>
+          </div>
+        </div>
+        <button class="peek-link-btn" id="peek-btn">Can't wait? Peek now</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Three Words Screen -->
+    <div class="step-screen" id="step-2">
+      <div class="screen-content center-content">
+        <div class="illustration-container" id="bunny-svg-2">
+          <!-- Animated Bunny SVG will be injected by JS -->
+        </div>
+        <div class="progress-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <p class="slide-text">Our bond in three words—<span class="highlight-text">Sweet, Loyal & My rock</span></p>
+        <button class="btn-primary next-step-btn" data-next="3">NEXT</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Vibe Check Screen -->
+    <div class="step-screen" id="step-3">
+      <div class="screen-content center-content">
+        <div class="illustration-container" id="bunny-svg-3"></div>
+        <div class="progress-dots">
+          <span class="dot"></span>
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <p class="slide-text">The vibe between us? <span class="highlight-text">Sweet & Warm</span></p>
+        <button class="btn-primary next-step-btn" data-next="4">NEXT</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Happy Birthday Screen -->
+    <div class="step-screen" id="step-4">
+      <div class="screen-content center-content">
+        <div class="illustration-container" id="bunny-svg-4"></div>
+        <div class="progress-dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot active"></span>
+          <span class="dot"></span>
+        </div>
+        <h2 class="birthday-heading text-pulse">Happy Birthday, Husband!</h2>
+        <button class="btn-primary next-step-btn" data-next="5">NEXT</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Special Intro Screen -->
+    <div class="step-screen" id="step-5">
+      <div class="screen-content center-content">
+        <div class="illustration-container" id="bunny-svg-5"></div>
+        <div class="progress-dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot active"></span>
+        </div>
+        <p class="slide-text">I made something special just for you...</p>
+        <button class="btn-primary next-step-btn" data-next="6">LET'S GO!</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Celebrate Transition Screen -->
+    <div class="step-screen" id="step-6">
+      <div class="screen-content center-content">
+        <h2 class="celebrate-title">Let's Celebrate!</h2>
+        <button class="btn-primary next-step-btn" data-next="7" id="btn-turn-lights">TURN ON THE LIGHTS</button>
+      </div>
+    </div>
+
+    <!-- STEP 7: Pop Balloons Screen -->
+    <div class="step-screen" id="step-7">
+      <!-- Hanging decorative lights -->
+      <div class="hanging-lights">
+        <span class="light-dot color-red"></span>
+        <span class="light-dot color-yellow"></span>
+        <span class="light-dot color-cyan"></span>
+        <span class="light-dot color-green"></span>
+        <span class="light-dot color-red"></span>
+        <span class="light-dot color-yellow"></span>
+        <span class="light-dot color-cyan"></span>
+        <span class="light-dot color-green"></span>
+      </div>
+
+      <div class="screen-content center-content">
+        <div class="popped-message-instruction">Pop the balloons to reveal a secret! 🎈</div>
+
+        <!-- Floating Balloons & Wrappers -->
+        <div class="balloons-container" id="hanging-balloons">
+          <div class="balloon-wrapper balloon-pink-wrap" style="left: 12%; bottom: 35px;">
+            <div class="balloon balloon-pink" id="balloon-1" data-word="1"></div>
+            <span class="popped-word" id="word-1">You</span>
+          </div>
+          <div class="balloon-wrapper balloon-yellow-wrap" style="left: 34%; bottom: 55px;">
+            <div class="balloon balloon-yellow" id="balloon-2" data-word="2"></div>
+            <span class="popped-word" id="word-2">are</span>
+          </div>
+          <div class="balloon-wrapper balloon-green-wrap" style="left: 56%; bottom: 25px;">
+            <div class="balloon balloon-green" id="balloon-3" data-word="3"></div>
+            <span class="popped-word" id="word-3">so</span>
+          </div>
+          <div class="balloon-wrapper balloon-blue-wrap" style="left: 78%; bottom: 50px;">
+            <div class="balloon balloon-blue" id="balloon-4" data-word="4"></div>
+            <span class="popped-word" id="word-4">special</span>
+          </div>
+        </div>
+
+        <button class="btn-primary next-step-btn btn-hidden" data-next="8" id="go-to-cake-btn">DECORATE THE CAKE</button>
+      </div>
+    </div>
+
+    <!-- STEP 8: Cake Decoration Screen -->
+    <div class="step-screen" id="step-8">
+      <div class="hanging-lights">
+        <span class="light-dot color-red"></span>
+        <span class="light-dot color-yellow"></span>
+        <span class="light-dot color-cyan"></span>
+        <span class="light-dot color-green"></span>
+        <span class="light-dot color-red"></span>
+        <span class="light-dot color-yellow"></span>
+        <span class="light-dot color-cyan"></span>
+        <span class="light-dot color-green"></span>
+      </div>
+      
+      <div class="screen-content center-content">
+        <h2 class="birthday-banner-text">HAPPY BIRTHDAY</h2>
+        
+        <div class="cake-container" id="cake-wrapper">
+          <!-- Cake SVG inserted dynamically by script -->
+        </div>
+
+        <div class="cake-interaction-area">
+          <button class="btn-primary" id="cake-action-btn">DECORATE THE CAKE</button>
+          
+          <!-- Blow Sensor Status (micro-interaction) -->
+          <div class="mic-status-container hidden" id="mic-status">
+            <div class="mic-wave"></div>
+            <span class="mic-text">Blowing on microphone works too!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 9: Envelope / Love Letter Screen -->
+    <div class="step-screen" id="step-9">
+      <div class="screen-content center-content">
+        <div class="envelope-container-wrapper">
+          <h3 class="envelope-title" id="envelope-main-title">A Message From My Heart</h3>
+          
+          <div class="envelope" id="heart-envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-pocket"></div>
+            <div class="envelope-letter" id="envelope-letter">
+              <div class="letter-content">
+                <h4 class="letter-salutation">My Dearest Husband,</h4>
+                <p class="letter-body">
+                  Happy birthday! 🎂<br><br>
+                  Every day, I thank God for bringing you into my life... 💗
+                </p>
+              </div>
+            </div>
+            <div class="heart-seal" id="heart-seal">❤️</div>
+          </div>
+          
+          <p class="envelope-prompt" id="envelope-prompt">Tap to open</p>
+        </div>
+      </div>
+
+      <!-- Expanded Letter Modal -->
+      <div class="letter-modal-overlay-container" id="letter-modal">
+        <div class="letter-modal-card">
+          <button class="close-letter-btn" id="close-letter-btn" title="Close Letter">❤️ Close</button>
+          <div class="letter-modal-paper">
+            <div class="letter-paper-header">
+              <div class="letter-seal-stamp">💝</div>
+              <h2 class="letter-modal-title">A Message From My Heart</h2>
+              <div class="letter-divider"></div>
+            </div>
+            <div class="letter-modal-body">
+              <h4 class="letter-salutation">My Dearest Husband,</h4>
+              <p class="letter-text-line">Happy birthday! 🎂</p>
+              <p class="letter-text-line">Every day, I thank God for bringing you into my life. You are not just my husband; you are my best friend, my greatest support, and the most beautiful part of my world.</p>
+              <p class="letter-text-line">Thank you for loving me, supporting me, and standing beside me through every joy and challenge. You make me feel valued, understood, and deeply loved. I am grateful not only for the man you are today but for the wonderful person you continue to be every day.</p>
+            </div>
+            <div class="letter-modal-footer">
+              <p class="letter-signoff">I love you so much... 🫶🏻💗</p>
+              <div class="bunny-couple-mini-svg" id="bunny-couple-modal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Audio Synth & Core Interactions -->
+  <script src="script.js"></script>
+</body>
+</html>
