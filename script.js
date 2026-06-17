@@ -1,5 +1,8 @@
 // Romantic Birthday Surprise - Master UI/UX Script
 
+// Target Date Configuration (Set to today's date: June 17, 2026)
+const TARGET_DATE = new Date("2026-06-17T00:00:00");
+
 // Core state variables
 let currentStep = 1;
 let selectedStyle = 'classic'; // 'classic' or 'cute'
@@ -619,30 +622,45 @@ updateCakeSVG();
 
 // --- 4. Countdown Ticking Engine ---
 function updateCountdown() {
-  if (!daysVal) return;
-  let days = parseInt(daysVal.innerText);
-  let hours = parseInt(hoursVal.innerText);
-  let mins = parseInt(minsVal.innerText);
+  if (!daysVal || !hoursVal || !minsVal) return;
   
-  if (mins > 0) {
-    mins--;
-  } else {
-    mins = 59;
-    if (hours > 0) {
-      hours--;
-    } else {
-      hours = 23;
-      if (days > 0) {
-        days--;
-      }
+  const now = new Date();
+  const timeDifference = TARGET_DATE - now;
+  
+  if (timeDifference <= 0) {
+    daysVal.innerText = "00";
+    hoursVal.innerText = "00";
+    minsVal.innerText = "00";
+    
+    // Change label and button to celebrate when the day has arrived
+    const labelEl = document.querySelector('.countdown-label');
+    if (labelEl) {
+      labelEl.innerText = "IT'S TODAY! 🎉";
+      labelEl.style.color = "var(--highlight-pink)";
+      labelEl.style.fontSize = "12px";
+      labelEl.style.letterSpacing = "2px";
     }
+    
+    if (peekBtn) {
+      peekBtn.innerText = "OPEN YOUR SURPRISE! 🎁";
+      peekBtn.className = "btn-primary text-pulse";
+      peekBtn.style.marginTop = "20px";
+      peekBtn.style.textDecoration = "none";
+      peekBtn.style.opacity = "1";
+    }
+    return;
   }
+  
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
   
   daysVal.innerText = String(days).padStart(2, '0');
   hoursVal.innerText = String(hours).padStart(2, '0');
   minsVal.innerText = String(mins).padStart(2, '0');
 }
-setInterval(updateCountdown, 60000);
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 peekBtn.addEventListener('click', () => {
   playChime();
