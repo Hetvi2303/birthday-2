@@ -1,7 +1,7 @@
 // Romantic Birthday Surprise - Master UI/UX Script
 
-// Target Date Configuration (Set to today's date: June 17, 2026)
-const TARGET_DATE = new Date("2026-06-17T00:00:00");
+// Target Date Configuration (Set to June 21, 2026)
+const TARGET_DATE = new Date("2026-06-21T00:00:00");
 
 // Core state variables
 let currentStep = 1;
